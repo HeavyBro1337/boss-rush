@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkytkgqqm8fxd"]
+
+[ext_resource type="Texture2D" uid="uid://bodrutcn0rxxo" path="res://graphics/crosshairs/crosshair.png" id="1_pi5w2"]
+[ext_resource type="Texture2D" uid="uid://dptwt5x65kqvh" path="res://graphics/crosshairs/chairs.png" id="2_h2jg6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28gih"]
+atlas = ExtResource("2_h2jg6")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axerq"]
+atlas = ExtResource("2_h2jg6")
+region = Rect2(0, 15, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35l7"]
+atlas = ExtResource("2_h2jg6")
+region = Rect2(0, 30, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo4a6"]
+atlas = ExtResource("2_h2jg6")
+region = Rect2(0, 45, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0n7pu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pi5w2")
+}],
+"loop": true,
+"name": &"crosshair",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_28gih")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_axerq")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_c35l7")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_qo4a6")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_28gih")
+}],
+"loop": false,
+"name": &"crosshair_anim",
+"speed": 4.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_npge2"]
+script/source = "extends AnimatedSprite2D
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+func _process(delta):
+	self.global_position = get_global_mouse_position()
+
+func _input(event):
+	if Input.is_action_just_pressed(\"shoot\"):
+		self.play(\"crosshair_anim\")
+"
+
+[node name="Crosshair" type="AnimatedSprite2D"]
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_0n7pu")
+animation = &"crosshair_anim"
+frame = 4
+frame_progress = 1.0
+script = SubResource("GDScript_npge2")
