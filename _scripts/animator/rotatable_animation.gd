@@ -10,7 +10,7 @@ class_name RotatableAnimation
 		
 @export var animationPath : String
 
-@export var angleFrames : Array[Array] = []
+var angleFrames : Array[Array] = []
 
 func get_rotated_frame(angle : float, frame) -> Texture2D:
 	while angle < 0:
@@ -36,12 +36,9 @@ func _ready():
 		if framesDir != null:
 			angleFrames.append([])
 			files = framesDir.get_files()
-			print(files)
 			for f in files:
 				if ".import" in f:
 					continue
 				var path = animationPath + d + "/" + f
-				print(path)
 				var spr = load(path)
 				angleFrames[-1].append(spr)
-	print(len(angleFrames))

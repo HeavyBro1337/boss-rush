@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmor67q7aiuw6"]
+[gd_scene load_steps=7 format=3 uid="uid://bmor67q7aiuw6"]
 
 [ext_resource type="Script" path="res://_scripts/characters/movement.gd" id="1_mcmfq"]
 [ext_resource type="Script" path="res://_scripts/characters/player_input.gd" id="2_7n2wo"]
 [ext_resource type="Texture2D" uid="uid://db51q3bxaig6l" path="res://graphics/ExampleCharacter/aiming/Soldier_aiming_000000/Soldier_0_aiming_0000.png" id="2_y6gur"]
+[ext_resource type="Script" path="res://_scripts/animator/rotatable_animator.gd" id="3_f6hh0"]
+[ext_resource type="PackedScene" uid="uid://ds8nnegqkk0q0" path="res://nodes/animations/soldier_aiming.tscn" id="4_hrdb0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nu3j"]
 
@@ -11,8 +13,12 @@ script = ExtResource("1_mcmfq")
 acceleration = 100.0
 deceleration = 600.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Visuals" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_y6gur")
+script = ExtResource("3_f6hh0")
+defaultAnimation = ExtResource("4_hrdb0")
+fps = 12.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0nu3j")
