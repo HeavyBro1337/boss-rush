@@ -18,6 +18,9 @@ texture_filter = 1
 texture = ExtResource("2_y6gur")
 script = ExtResource("3_f6hh0")
 defaultAnimation = ExtResource("4_hrdb0")
+animations = {
+"": ""
+}
 fps = 12.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
