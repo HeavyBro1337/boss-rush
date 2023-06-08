@@ -8,18 +8,14 @@ class_name RotatableAnimator
 
 signal on_frame_changed()
 signal on_animation_end()
-signal on_animation_start()
+signal on_animation_start(animation_name)
 
 var angle : float = 0
 var currentFrame : int = 0
 var _time : float = 0
-
 var currentAnimation : String = "Default"
 
-
 func _process(delta):
-	
-	print(name)
 	var currAnim = get_node("./%s" % currentAnimation)
 	
 	_time += delta
@@ -33,12 +29,12 @@ func _process(delta):
 		
 		currentFrame += 1
 		
+		if not loop and currentFrame == currAnim.frameCount - 1:
+			on_animation_end.emit()
+			
 		if loop:
 			currentFrame %= currAnim.frameCount - 1
-			
-		if currentFrame == currAnim.frameCount and not loop:
-			on_animation_end.emit()
-				
+		
 		_time -= _time
 	texture = currAnim.get_rotated_frame(angle, currentFrame)
 	
@@ -56,5 +52,6 @@ func _ready():
 func set_animation(key : String):
 	if currentAnimation != key:
 		currentFrame = 0
-		print("reseting")
+		on_animation_start.emit(key)
+		
 	currentAnimation = key
