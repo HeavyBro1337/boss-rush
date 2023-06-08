@@ -2,7 +2,8 @@ extends Sprite2D
 
 class_name RotatableAnimator
 
-@export var animation : Dictionary
+@export var defaultAnimation : Resource
+@export var animations : Dictionary
 @export var fps : float = 30
 @export var currentFrame : int = 0
 
@@ -28,6 +29,13 @@ func _process(delta):
 	texture = $CurrentAnimation.get_rotated_frame(angle, currentFrame)
 	
 func _ready():
-	var a = load(animation.resource_path).instantiate()
+	var a = load(defaultAnimation.resource_path).instantiate()
+	a.name = "CurrentAnimation"
+	add_child(a)
+	
+func set_animation(key : String):
+	$CurrentAnimation.queue_free()
+	
+	var a = load(animations[key]).instantiate()
 	a.name = "CurrentAnimation"
 	add_child(a)
