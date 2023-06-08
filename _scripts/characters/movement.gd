@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Movement
 
-@export var speed : float = 300
+@export var speed : float = 200
 @export var acceleration : float = 0
 @export var deceleration : float = 0
 var direction : Vector2
