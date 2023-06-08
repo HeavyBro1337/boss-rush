@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqf0ph523hvyl"]
 
-[ext_resource type="PackedScene" uid="uid://cd8f0bpaybrod" path="res://prefab/Global_HUD.tscn" id="1_qejfp"]
+[ext_resource type="PackedScene" uid="uid://cd8f0bpaybrod" path="res://nodes/Global_HUD.tscn" id="1_qejfp"]
 [ext_resource type="PackedScene" uid="uid://bmor67q7aiuw6" path="res://nodes/characters/player.tscn" id="1_wc37h"]
 [ext_resource type="Texture2D" uid="uid://b3mypi8vo0v75" path="res://graphics/icon.svg" id="2_lkaro"]
 
@@ -11,9 +11,6 @@
 [node name="Player" parent="." instance=ExtResource("1_wc37h")]
 acceleration = 200.0
 deceleration = 25.0
-
-[node name="Sprite2D" parent="Player" index="0"]
-texture_filter = 1
 
 [node name="CollisionShape2D" parent="Player" index="1"]
 position = Vector2(0, 8)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cd8f0bpaybrod"]
 
-[ext_resource type="PackedScene" uid="uid://bkytkgqqm8fxd" path="res://graphics/crosshairs/mouse.tscn" id="1_e73tq"]
+[ext_resource type="PackedScene" path="res://nodes/mouse.tscn" id="1_e73tq"]
 [ext_resource type="Texture2D" uid="uid://b3mypi8vo0v75" path="res://graphics/icon.svg" id="1_md3gj"]
 
 [node name="Global_HUD" type="CanvasLayer"]

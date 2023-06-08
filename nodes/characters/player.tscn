@@ -23,6 +23,7 @@ fps = 12.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0nu3j")
 
-[node name="Input" type="Node2D" parent="." node_paths=PackedStringArray("movement")]
+[node name="Input" type="Node2D" parent="." node_paths=PackedStringArray("movement", "animator")]
 script = ExtResource("2_7n2wo")
 movement = NodePath("..")
+animator = NodePath("../Visuals")
