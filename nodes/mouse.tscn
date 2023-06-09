@@ -65,9 +65,8 @@ func _input(event):
 "
 
 [node name="Crosshair" type="AnimatedSprite2D"]
+texture_filter = 1
 position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_0n7pu")
 animation = &"crosshair_anim"
-frame = 4
-frame_progress = 1.0
 script = SubResource("GDScript_npge2")

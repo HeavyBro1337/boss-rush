@@ -31,3 +31,7 @@ shape = SubResource("CircleShape2D_0nu3j")
 script = ExtResource("2_7n2wo")
 movement = NodePath("..")
 animator = NodePath("../Visuals")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 16.0

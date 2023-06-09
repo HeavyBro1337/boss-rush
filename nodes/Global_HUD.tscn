@@ -8,6 +8,7 @@
 [node name="Crosshair" parent="." instance=ExtResource("1_e73tq")]
 
 [node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(39, 40.5)
 scale = Vector2(0.515625, 0.507813)
 texture = ExtResource("1_md3gj")

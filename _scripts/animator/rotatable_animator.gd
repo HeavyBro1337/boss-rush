@@ -55,3 +55,6 @@ func set_animation(key : String):
 		on_animation_start.emit(key)
 		
 	currentAnimation = key
+	
+static func vec_to_deg(direction : Vector2) -> float:
+	return rad_to_deg(atan2(direction.y, direction.x))
