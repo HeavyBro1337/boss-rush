@@ -1,29 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqf0ph523hvyl"]
+[gd_scene load_steps=12 format=3 uid="uid://bqf0ph523hvyl"]
 
-[ext_resource type="PackedScene" uid="uid://cd8f0bpaybrod" path="res://prefab/Global_HUD.tscn" id="1_qejfp"]
+[ext_resource type="PackedScene" uid="uid://cd8f0bpaybrod" path="res://nodes/Global_HUD.tscn" id="1_qejfp"]
 [ext_resource type="PackedScene" uid="uid://bmor67q7aiuw6" path="res://nodes/characters/player.tscn" id="1_wc37h"]
 [ext_resource type="Texture2D" uid="uid://b3mypi8vo0v75" path="res://graphics/icon.svg" id="2_lkaro"]
+[ext_resource type="Texture2D" uid="uid://db51q3bxaig6l" path="res://graphics/ExampleCharacter/aiming/Soldier_aiming_000000/Soldier_0_aiming_0000.png" id="4_5k7uq"]
+[ext_resource type="Script" path="res://_scripts/characters/movement.gd" id="4_h3u8b"]
+[ext_resource type="Script" path="res://_scripts/animator/rotatable_animator.gd" id="5_ubr45"]
+[ext_resource type="PackedScene" uid="uid://ds8nnegqkk0q0" path="res://nodes/animations/soldier_aiming.tscn" id="6_6n7ur"]
+[ext_resource type="Script" path="res://_scripts/characters/ai/follow_player.gd" id="8_lwqtv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgawc"]
+size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nu3j"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_eh5n4"]
+vertices = PackedVector2Array(-621, -396, 1189, -502, 214, -180, 73, -195, -628, -386, 1188, -500, 1202, 680, 215, -51, -635, 683, 86, -51)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(2, 5, 6, 7), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(9, 8, 4, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-628, -386, -635, 683, 1202, 680, 1188, -500, 214, -180, 215, -51, 86, -51, 73, -195, 214, -180, 1189, -502, -621, -396)])
 
 [node name="Scene" type="Node2D"]
 
 [node name="Global_HUD" parent="." instance=ExtResource("1_qejfp")]
 
-[node name="Player" parent="." instance=ExtResource("1_wc37h")]
-acceleration = 200.0
-deceleration = 25.0
+[node name="Obstacle" type="RigidBody2D" parent="."]
+position = Vector2(150, -116)
+freeze = true
 
-[node name="Sprite2D" parent="Player" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Obstacle"]
 texture_filter = 1
+texture = ExtResource("2_lkaro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+shape = SubResource("RectangleShape2D_sgawc")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacle"]
+
+[node name="Player" parent="." instance=ExtResource("1_wc37h")]
+motion_mode = 1
 
 [node name="CollisionShape2D" parent="Player" index="1"]
-position = Vector2(0, 8)
+position = Vector2(0, 13)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enabled = true
-position_smoothing_speed = 16.0
+[node name="CommonEnemyBase" type="CharacterBody2D" parent="."]
+position = Vector2(181, 21)
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("4_h3u8b")
+speed = 150.0
+acceleration = 700.0
+deceleration = 400.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(150, -116)
-texture = ExtResource("2_lkaro")
+[node name="Visuals" type="Sprite2D" parent="CommonEnemyBase"]
+texture_filter = 1
+texture = ExtResource("4_5k7uq")
+script = ExtResource("5_ubr45")
+defaultAnimation = ExtResource("6_6n7ur")
+animations = {
+"idle": "res://nodes/animations/soldier_aiming.tscn",
+"walk": "res://nodes/animations/soldier_walking.tscn"
+}
+fps = 12.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonEnemyBase"]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_0nu3j")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CommonEnemyBase" node_paths=PackedStringArray("movement", "animator")]
+target_desired_distance = 64.0
+script = ExtResource("8_lwqtv")
+movement = NodePath("..")
+animator = NodePath("../Visuals")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_eh5n4")
 
 [editable path="Player"]

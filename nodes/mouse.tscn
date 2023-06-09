@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkytkgqqm8fxd"]
+[gd_scene load_steps=9 format=3 uid="uid://mv1fu5jt54tb"]
 
 [ext_resource type="Texture2D" uid="uid://bodrutcn0rxxo" path="res://graphics/crosshairs/crosshair.png" id="1_pi5w2"]
 [ext_resource type="Texture2D" uid="uid://dptwt5x65kqvh" path="res://graphics/crosshairs/chairs.png" id="2_h2jg6"]
@@ -65,9 +65,8 @@ func _input(event):
 "
 
 [node name="Crosshair" type="AnimatedSprite2D"]
+texture_filter = 1
 position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_0n7pu")
 animation = &"crosshair_anim"
-frame = 4
-frame_progress = 1.0
 script = SubResource("GDScript_npge2")

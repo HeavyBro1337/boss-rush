@@ -7,8 +7,8 @@ class_name RotatableAnimation
 		if len(angleFrames) == 0:
 			return 0
 		return len(angleFrames[0])
-		
 @export var animationPath : String
+@export var loop : bool = true
 
 var angleFrames : Array[Array] = []
 
@@ -29,6 +29,7 @@ func _ready():
 	
 	if dir != null:
 		directories = dir.get_directories()
+		
 	for d in directories:
 		var files = []
 		var framesDir = DirAccess.open(animationPath + "/" + d)

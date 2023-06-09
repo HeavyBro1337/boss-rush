@@ -5,3 +5,4 @@
 [node name="Soldier_Aiming" type="Node2D"]
 script = ExtResource("1_j8tv7")
 animationPath = "res://graphics/ExampleCharacter/aiming/"
+loop = false

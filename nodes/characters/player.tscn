@@ -19,13 +19,19 @@ texture = ExtResource("2_y6gur")
 script = ExtResource("3_f6hh0")
 defaultAnimation = ExtResource("4_hrdb0")
 animations = {
-"": ""
+"idle": "res://nodes/animations/soldier_aiming.tscn",
+"walk": "res://nodes/animations/soldier_walking.tscn"
 }
 fps = 12.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0nu3j")
 
-[node name="Input" type="Node2D" parent="." node_paths=PackedStringArray("movement")]
+[node name="Input" type="Node2D" parent="." node_paths=PackedStringArray("movement", "animator")]
 script = ExtResource("2_7n2wo")
 movement = NodePath("..")
+animator = NodePath("../Visuals")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 16.0

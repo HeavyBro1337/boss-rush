@@ -5,6 +5,7 @@ class_name Movement
 @export var speed : float = 200
 @export var acceleration : float = 0
 @export var deceleration : float = 0
+
 var direction : Vector2
 var currentVelocity : Vector2
 
