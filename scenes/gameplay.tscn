@@ -20,6 +20,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-635, 683, 1202, 680, 1188, -500, 243, -194, 244, -37, 68, -31, 64, -199, 244, -194, 1189, -502, -628, -501)])
 
 [node name="Scene" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Global_HUD" parent="." instance=ExtResource("1_qejfp")]
 
@@ -37,6 +38,7 @@ shape = SubResource("RectangleShape2D_sgawc")
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacle"]
 
 [node name="Player" parent="." instance=ExtResource("1_wc37h")]
+position = Vector2(70, -41)
 motion_mode = 1
 
 [node name="CollisionShape2D" parent="Player" index="1"]
