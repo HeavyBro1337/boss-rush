@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqf0ph523hvyl"]
+[gd_scene load_steps=13 format=3 uid="uid://bqf0ph523hvyl"]
 
 [ext_resource type="PackedScene" uid="uid://cd8f0bpaybrod" path="res://nodes/Global_HUD.tscn" id="1_qejfp"]
 [ext_resource type="PackedScene" uid="uid://bmor67q7aiuw6" path="res://nodes/characters/player.tscn" id="1_wc37h"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://_scripts/animator/rotatable_animator.gd" id="5_ubr45"]
 [ext_resource type="PackedScene" uid="uid://ds8nnegqkk0q0" path="res://nodes/animations/soldier_aiming.tscn" id="6_6n7ur"]
 [ext_resource type="Script" path="res://_scripts/characters/ai/follow_player.gd" id="8_lwqtv"]
+[ext_resource type="PackedScene" uid="uid://cbowcfhmfx1gx" path="res://nodes/bullet.tscn" id="9_jq52s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgawc"]
 size = Vector2(128, 128)
@@ -38,11 +39,12 @@ shape = SubResource("RectangleShape2D_sgawc")
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacle"]
 
 [node name="Player" parent="." instance=ExtResource("1_wc37h")]
-position = Vector2(70, -41)
+position = Vector2(73, -20)
 motion_mode = 1
 
 [node name="CollisionShape2D" parent="Player" index="1"]
 position = Vector2(0, 13)
+script = null
 
 [node name="CommonEnemyBase" type="CharacterBody2D" parent="."]
 position = Vector2(181, 21)
@@ -77,5 +79,8 @@ animator = NodePath("../Visuals")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_eh5n4")
+
+[node name="Bullet" parent="." instance=ExtResource("9_jq52s")]
+position = Vector2(-105, -10)
 
 [editable path="Player"]

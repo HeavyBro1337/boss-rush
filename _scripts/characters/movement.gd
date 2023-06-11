@@ -16,3 +16,6 @@ func _physics_process(delta):
 	position += currentVelocity * speed * delta
 	
 	move_and_slide()
+
+func _on_hit():
+	print("Hello, world!")
