@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5oru8kdd5xhb"]
+
+[ext_resource type="Script" path="res://_scripts/animator/rotatable_animation.gd" id="1_86ayf"]
+
+[node name="Player_Idle" type="Node2D"]
+script = ExtResource("1_86ayf")
+animationPath = "res://graphics/Characters/Player/idle/"

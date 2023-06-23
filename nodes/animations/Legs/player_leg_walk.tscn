@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://q2kf6s01vja1"]
+
+[ext_resource type="Script" path="res://_scripts/animator/rotatable_animation.gd" id="1_pnm6n"]
+
+[node name="Leg_Walk" type="Node2D"]
+script = ExtResource("1_pnm6n")
+animationPath = "res://graphics/Characters/Legs/walk/"
