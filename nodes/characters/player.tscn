@@ -5,10 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://dye5wrgdsfhg8" path="res://graphics/Characters/Player/run/Player_run_000045/Player_2_run_0006.png" id="2_532em"]
 [ext_resource type="Script" path="res://_scripts/animator/rotatable_animator.gd" id="3_f6hh0"]
 [ext_resource type="PackedScene" uid="uid://ds8nnegqkk0q0" path="res://nodes/animations/soldier_aiming.tscn" id="4_hrdb0"]
+[ext_resource type="Script" path="res://_scripts/stats.gd" id="5_wrd2w"]
 [ext_resource type="Texture2D" uid="uid://b8au4ak11i5an" path="res://graphics/Characters/Legs/rest/Legs_rest_000000/Legs_0_rest_0006.png" id="5_niwy3"]
 [ext_resource type="PackedScene" uid="uid://vxrg6xt2df3d" path="res://nodes/animations/Legs/player_leg_idle.tscn" id="6_ft0nu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nu3j"]
+
+[sub_resource type="GDScript" id="GDScript_25h53"]
+script/source = "extends CollisionShape2D
+
+signal on_bullet_hit()
+
+func _on_hit():
+	on_bullet_hit.emit()
+	print(\"Hello world\")
+"
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mcmfq")
@@ -45,7 +56,10 @@ fps = 12.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_0nu3j")
+script = SubResource("GDScript_25h53")
 
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("5_wrd2w")
 [node name="Input" type="Node2D" parent="." node_paths=PackedStringArray("movement")]
 script = ExtResource("2_7n2wo")
 movement = NodePath("..")

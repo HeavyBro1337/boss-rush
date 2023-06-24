@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbowcfhmfx1gx"]
+
+[ext_resource type="Script" path="res://_scripts/projectile.gd" id="1_nvpda"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u05th"]
+
+[sub_resource type="Gradient" id="Gradient_1nwob"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vr3a2"]
+gradient = SubResource("Gradient_1nwob")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.515337, 0.493865)
+fill_to = Vector2(0.97546, 0.714724)
+
+[node name="Bullet" type="CharacterBody2D"]
+position = Vector2(-34, 12)
+script = ExtResource("1_nvpda")
+speed = 300.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u05th")
+
+[node name="Visuals" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_vr3a2")

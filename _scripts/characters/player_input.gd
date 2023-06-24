@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export var movement : Movement
 
@@ -17,6 +17,10 @@ func _process(delta):
 
 	animator.angle = RotatableAnimator.vec_to_deg(mouse_dir)
 	
+func _input(event):
+	if event.is_action("shoot"):
+		print("Pow!")
+    
 	if dir != Vector2.ZERO:
 		if not is_moving_backwards:
 			animator.set_animation("walk" if not is_sprinting else "run")
