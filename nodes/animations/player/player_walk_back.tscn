@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddh0vnv1ck4lq"]
+
+[ext_resource type="Script" path="res://_scripts/animator/rotatable_animation.gd" id="1_68qqu"]
+
+[node name="Player_Walk_Back" type="Node2D"]
+script = ExtResource("1_68qqu")
+animationPath = "res://graphics/Characters/Player/run back/"
