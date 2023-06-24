@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" path="res://_scripts/characters/movement.gd" id="1_mcmfq"]
 [ext_resource type="Script" path="res://_scripts/characters/player_input.gd" id="2_7n2wo"]
-[ext_resource type="Texture2D" uid="uid://db51q3bxaig6l" path="res://graphics/ExampleCharacter/aiming/Soldier_aiming_000000/Soldier_0_aiming_0000.png" id="2_y6gur"]
+[ext_resource type="Texture2D" uid="uid://dye5wrgdsfhg8" path="res://graphics/Characters/Player/run/Player_run_000045/Player_2_run_0006.png" id="2_532em"]
 [ext_resource type="Script" path="res://_scripts/animator/rotatable_animator.gd" id="3_f6hh0"]
 [ext_resource type="PackedScene" uid="uid://ds8nnegqkk0q0" path="res://nodes/animations/soldier_aiming.tscn" id="4_hrdb0"]
 [ext_resource type="Script" path="res://_scripts/stats.gd" id="5_wrd2w"]
+[ext_resource type="Texture2D" uid="uid://b8au4ak11i5an" path="res://graphics/Characters/Legs/rest/Legs_rest_000000/Legs_0_rest_0006.png" id="5_niwy3"]
+[ext_resource type="PackedScene" uid="uid://vxrg6xt2df3d" path="res://nodes/animations/Legs/player_leg_idle.tscn" id="6_ft0nu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nu3j"]
 
@@ -25,27 +27,42 @@ acceleration = 100.0
 deceleration = 600.0
 
 [node name="Visuals" type="Sprite2D" parent="."]
+z_index = 10
 texture_filter = 1
-texture = ExtResource("2_y6gur")
+texture = ExtResource("2_532em")
 script = ExtResource("3_f6hh0")
 defaultAnimation = ExtResource("4_hrdb0")
 animations = {
-"idle": "res://nodes/animations/soldier_aiming.tscn",
-"walk": "res://nodes/animations/soldier_walking.tscn"
+"idle": "res://nodes/animations/player/player_idle.tscn",
+"run": "res://nodes/animations/player/player_run.tscn",
+"walk": "res://nodes/animations/player/player_walk.tscn",
+"walk_back": "res://nodes/animations/player/player_walk_back.tscn"
+}
+fps = 12.0
+
+[node name="Legs" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("5_niwy3")
+script = ExtResource("3_f6hh0")
+defaultAnimation = ExtResource("6_ft0nu")
+animations = {
+"idle": "res://nodes/animations/Legs/player_leg_idle.tscn",
+"run": "res://nodes/animations/Legs/player_leg_run.tscn",
+"walk": "res://nodes/animations/Legs/player_leg_walk.tscn",
+"walk_back": "res://nodes/animations/Legs/player_leg_walk_back.tscn"
 }
 fps = 12.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_0nu3j")
 script = SubResource("GDScript_25h53")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("5_wrd2w")
-
-[node name="Input" type="Node" parent="." node_paths=PackedStringArray("movement", "animator")]
+[node name="Input" type="Node2D" parent="." node_paths=PackedStringArray("movement")]
 script = ExtResource("2_7n2wo")
 movement = NodePath("..")
-animator = NodePath("../Visuals")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
